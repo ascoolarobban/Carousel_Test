@@ -45,12 +45,20 @@ struct CardView: View {
     var image: String
 
     var body: some View {
-        ForEach(0 ..< 10) { _ in
+        ForEach(0..<10) { _ in
             VStack {
                 Image(image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(height: 200)
+                    .frame(height: 160)
+                    .overlay(
+                        LinearGradient(
+                            gradient: Gradient(colors: [.white, .clear, .clear,.clear]),
+                            startPoint: .bottom,
+                            endPoint: .top
+                        )
+                        .mask(Rectangle())  
+                    )
                 Text(title)
                     .font(.title)
                     .padding()
@@ -60,9 +68,14 @@ struct CardView: View {
             .cornerRadius(10)
             .shadow(radius: 5)
             .padding()
+
         }
     }
 }
+
+
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
